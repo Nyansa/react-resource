@@ -5,7 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.defaults = undefined;
 exports.default = request;
-exports.parseJSON = parseJSON;
 
 var _axios = require('axios');
 
@@ -43,8 +42,7 @@ var defaults = exports.defaults = {
 function request(url) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-  debugger;
-  return (0, _axios2.default)(url, (0, _merge2.default)(options, defaults)).then(parseJSON).then(function (data) {
+  return (0, _axios2.default)(url, (0, _merge2.default)(options, defaults)).then(function (data) {
     return data;
   });
 }
@@ -57,9 +55,9 @@ function request(url) {
  * @return {object}          The parsed JSON from the request
  */
 
-function parseJSON(response) {
-  return response.json();
-}
+//export function parseJSON(response) {
+//  return response.json();
+//}
 
 /**
  * Checks if a network request came back fine, and throws an error if not

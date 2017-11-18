@@ -25,9 +25,7 @@ export const defaults = {
  */
 
 export default function request(url, options = {}) {
-  debugger
   return axios(url, merge(options, defaults))
-    .then(parseJSON)
     .then((data) => (data));
 }
 
@@ -39,9 +37,9 @@ export default function request(url, options = {}) {
  * @return {object}          The parsed JSON from the request
  */
 
-export function parseJSON(response) {
-  return response.json();
-}
+//export function parseJSON(response) {
+//  return response.json();
+//}
 
 /**
  * Checks if a network request came back fine, and throws an error if not
