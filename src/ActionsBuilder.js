@@ -21,14 +21,14 @@ export default class ActionsBuilder {
   constructor(Model, url, mappings = {}, customActions = {}) {
     // `ReactResource` config
     this.resource = {
-      url, 
-      mappings, 
+      url,
+      mappings,
       customActions,
     };
 
     // `Model` actions configs
     this.actions = reduce(
-      merge(customActions, ActionsBuilder.defaults), 
+      merge(customActions, ActionsBuilder.defaults),
       (accumulator, cfg, name) => {
         accumulator[name] = this.configure(name, cfg);
 
@@ -40,7 +40,7 @@ export default class ActionsBuilder {
     // `Model` interceptors
     this.interceptors = new Interceptors(Model);
   }
-  
+
   /**
    * Merge default action config with `ReactResource` customActions config
    *
@@ -92,11 +92,15 @@ export default class ActionsBuilder {
 
   instanceMethods(data, Model) {
     const { mappings } = this.resource;
+    const interceptors = this.interceptors;
+    let updatedData;
 
     each(this.actions, (cfg, name) => {
-      Model.prototype[`$${name}`] = (...kwargs) => {
-        const action = new Action(Model, name, cfg, data, mappings, this.interceptors);
-        
+      Model.prototype[`$${name}`] = function(...kwargs) {
+        // Merge the updated params from the instance method with the data object, where this is the instance
+        updatedData = merge({}, data, this);
+        const action = new Action(Model, name, cfg, updatedData, mappings, interceptors);
+
         return action.promise(...kwargs);
       };
     });
