@@ -7,7 +7,9 @@ exports.defaults = undefined;
 exports.default = request;
 exports.parseJSON = parseJSON;
 
-require('axios');
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
 
 var _merge = require('lodash/merge');
 
@@ -41,7 +43,7 @@ var defaults = exports.defaults = {
 function request(url) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-  return axios(url, (0, _merge2.default)(optsion, defaults)).then(parseJSON).then(function (data) {
+  return (0, _axios2.default)(url, (0, _merge2.default)(optsion, defaults)).then(parseJSON).then(function (data) {
     return data;
   });
 }

@@ -2,7 +2,7 @@
    Request
    ========================================================================== */
 
-import 'axios';
+import axios from 'axios';
 import merge from 'lodash/merge';
 
 /**
