@@ -42,6 +42,7 @@ var defaults = exports.defaults = {
 function request(url) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
+  debugger;
   return (0, _axios2.default)(url, (0, _merge2.default)(options, defaults)).then(function (_ref) {
     var data = _ref.data;
     return data;
