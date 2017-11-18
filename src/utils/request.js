@@ -26,10 +26,9 @@ export const defaults = {
 
 export default function request(url, options = {}) {
   // set body to data for axios. This can be donw in arguments-parser, but it is best here for now incase a separate AJAX like library is used
-  debugger
   let updatedOptions = convertBetweenObjectParams(options, 'body', 'data');
   return axios(url, merge(updatedOptions, defaults))
-    .then(res => convertBetweenObjectParams(res, 'data', 'body'));
+    .then(({ data }) => data);
 }
 
 function convertBetweenObjectParams(object, fromKey, toKey) {

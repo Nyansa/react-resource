@@ -43,10 +43,10 @@ function request(url) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   // set body to data for axios. This can be donw in arguments-parser, but it is best here for now incase a separate AJAX like library is used
-  debugger;
   var updatedOptions = convertBetweenObjectParams(options, 'body', 'data');
-  return (0, _axios2.default)(url, (0, _merge2.default)(updatedOptions, defaults)).then(function (res) {
-    return convertBetweenObjectParams(res, 'data', 'body');
+  return (0, _axios2.default)(url, (0, _merge2.default)(updatedOptions, defaults)).then(function (_ref) {
+    var data = _ref.data;
+    return data;
   });
 }
 
