@@ -43,7 +43,7 @@ var defaults = exports.defaults = {
 function request(url) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-  return (0, _axios2.default)(url, (0, _merge2.default)(optsion, defaults)).then(parseJSON).then(function (data) {
+  return (0, _axios2.default)(url, (0, _merge2.default)(options, defaults)).then(parseJSON).then(function (data) {
     return data;
   });
 }

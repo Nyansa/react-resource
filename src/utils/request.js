@@ -25,7 +25,7 @@ export const defaults = {
  */
 
 export default function request(url, options = {}) {
-  return axios(url, merge(optsion, defaults))
+  return axios(url, merge(options, defaults))
     .then(parseJSON)
     .then((data) => (data));
 }
