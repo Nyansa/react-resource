@@ -7,7 +7,7 @@ exports.defaults = undefined;
 exports.default = request;
 exports.parseJSON = parseJSON;
 
-require('whatwg-fetch');
+require('axios');
 
 var _merge = require('lodash/merge');
 
@@ -24,7 +24,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
    ========================================================================== */
 
 var defaults = exports.defaults = {
-  credentials: 'same-origin',
   headers: {
     'Content-Type': 'application/json'
   }
@@ -42,7 +41,7 @@ var defaults = exports.defaults = {
 function request(url) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-  return fetch(url, (0, _merge2.default)(options, defaults)).then(checkStatus).then(parseJSON).then(function (data) {
+  return axios(url, (0, _merge2.default)(optsion, defaults)).then(parseJSON).then(function (data) {
     return data;
   });
 }
@@ -67,14 +66,14 @@ function parseJSON(response) {
  * @return {object|undefined} Returns either the response, or throws an error
  */
 
-function checkStatus(response) {
-  // return response;
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
-
-  var error = new Error(response.statusText);
-  error.response = response;
-
-  throw error;
-}
+//function checkStatus(response) {
+//  // return response;
+//  if (response.status >= 200 && response.status < 300) {
+//    return response;
+//  }
+//
+//  const error = new Error(response.statusText);
+//  error.response = response;
+//
+//  throw error;
+//}
