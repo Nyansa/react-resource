@@ -35,7 +35,7 @@ export default function request(url, options = {}) {
 function convertBetweenObjectParams(object, fromKey, toKey) {
   let updatedObject = merge({}, object);
 
-  updatedObject[toKey] = updateObject[fromKey];
+  updatedObject[toKey] = updatedObject[fromKey];
   delete updatedObject[fromKey];
 
   return updatedObject;

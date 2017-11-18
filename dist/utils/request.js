@@ -53,7 +53,7 @@ function request(url) {
 function convertBetweenObjectParams(object, fromKey, toKey) {
   var updatedObject = (0, _merge2.default)({}, object);
 
-  updatedObject[toKey] = updateObject[fromKey];
+  updatedObject[toKey] = updatedObject[fromKey];
   delete updatedObject[fromKey];
 
   return updatedObject;
