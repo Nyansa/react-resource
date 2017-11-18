@@ -98,7 +98,7 @@ export default class ActionsBuilder {
     each(this.actions, (cfg, name) => {
       Model.prototype[`$${name}`] = function(...kwargs) {
         // Merge the updated params from the instance method with the data object, where this is the instance
-        updatedData = merge({}, data, this);
+        updatedData = Object.assign({}, data, this);
         const action = new Action(Model, name, cfg, updatedData, mappings, interceptors);
 
         return action.promise(...kwargs);

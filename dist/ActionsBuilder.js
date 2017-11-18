@@ -137,7 +137,7 @@ var ActionsBuilder = function () {
       (0, _each2.default)(this.actions, function (cfg, name) {
         Model.prototype['$' + name] = function () {
           // Merge the updated params from the instance method with the data object, where this is the instance
-          updatedData = (0, _merge2.default)({}, data, this);
+          updatedData = Object.assign({}, data, this);
           var action = new _Action2.default(Model, name, cfg, updatedData, mappings, interceptors);
 
           return action.promise.apply(action, arguments);
