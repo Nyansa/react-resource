@@ -26,7 +26,7 @@ export const defaults = {
 
 export default function request(url, options = {}) {
   return axios(url, merge(options, defaults))
-    .then((data) => (data));
+    .then(({ data }) => data);
 }
 
 /**
