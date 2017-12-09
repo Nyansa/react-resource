@@ -36,6 +36,7 @@ function ReactResource() {
     var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     // Model instance data
+    debugger;
     (0, _assign2.default)(this, data);
 
     // Model instance actions

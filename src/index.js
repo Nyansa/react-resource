@@ -15,6 +15,7 @@ export default function ReactResource(...kwargs) {
 
   function Model(data = {}) {
     // Model instance data
+    debugger
     assign(this, data);
 
     // Model instance actions
