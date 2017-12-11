@@ -92,11 +92,16 @@ export default class ActionsBuilder {
 
   instanceMethods(data, Model) {
     const { mappings } = this.resource;
+    let updatedData = data;
+    const interceptors = this.interceptors
 
     each(this.actions, (cfg, name) => {
-      Model.prototype[`$${name}`] = (...kwargs) => {
-        const action = new Action(Model, name, cfg, data, mappings, this.interceptors);
-        
+      Model.prototype[`$${name}`] = function(...kwargs) {
+        if (['update', 'create'].includes(name)) {
+          updatedData = merge({}, data, this);
+        }
+
+        const action = new Action(Model, name, cfg, updatedData, mappings, interceptors);
         return action.promise(...kwargs);
       };
     });
