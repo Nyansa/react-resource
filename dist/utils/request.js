@@ -56,7 +56,14 @@ function request(url) {
  */
 
 function parseJSON(response) {
-  return response.json();
+  // Reponse could be blank, so we convert to text and then json
+  return response.text().then(function (data) {
+    try {
+      return JSON.parse(data);
+    } catch (e) {
+      return data;
+    }
+  });
 }
 
 /**
