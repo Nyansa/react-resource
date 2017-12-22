@@ -56,14 +56,23 @@ function request(url) {
  */
 
 function parseJSON(response) {
-  // Reponse could be blank, so we convert to text and then json
-  return response.text().then(function (data) {
-    try {
-      return JSON.parse(data);
-    } catch (e) {
-      return data;
-    }
-  });
+  if (!isJSON(response.headers)) {
+    return response.text();
+  } else {
+    return response.json();
+  }
+}
+
+/**
+ * Verifies that the content returned is JSON
+ *
+ * @param  {object} headers from the network response
+ *
+ * @return {boolean} Whether the content-type includes JSON or not
+ */
+
+function isJSON(headers) {
+  return headers.get('content-type').match(/json/i);
 }
 
 /**
