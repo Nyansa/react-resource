@@ -129,15 +129,18 @@ var ActionsBuilder = function () {
   }, {
     key: 'instanceMethods',
     value: function instanceMethods(data, Model) {
-      var _this3 = this;
-
       var mappings = this.resource.mappings;
 
+      var updatedData = data;
+      var interceptors = this.interceptors;
 
       (0, _each2.default)(this.actions, function (cfg, name) {
         Model.prototype['$' + name] = function () {
-          var action = new _Action2.default(Model, name, cfg, data, mappings, _this3.interceptors);
+          if (['update', 'create'].includes(name)) {
+            updatedData = (0, _merge2.default)({}, data, this);
+          }
 
+          var action = new _Action2.default(Model, name, cfg, updatedData, mappings, interceptors);
           return action.promise.apply(action, arguments);
         };
       });
